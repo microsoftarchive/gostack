@@ -17,9 +17,7 @@ func NewMiddleware(app string, env string) *Middleware {
 	client := quipo.NewStatsdClient("localhost:8125", prefix)
 	client.CreateSocket()
 
-	return &Middleware{
-		client: client,
-	}
+	return &Middleware{client}
 }
 
 func (m *Middleware) ServeHTTP(response http.ResponseWriter, request *http.Request, next http.HandlerFunc) {
